@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://shaders/psx.shader" type="Shader" id=1]
+[ext_resource path="res://assets/metal.jpg" type="Texture" id=2]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 1, 0, 1 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 1 )
+shader_param/precision_multiplier = 1.0
+shader_param/modulate_color = Color( 1, 1, 1, 1 )
+shader_param/uv_scale = Vector2( 3, 2 )
+shader_param/uv_offset = Vector2( 0, 0 )
+shader_param/uv_pan_velocity = Vector2( 0, 0 )
+shader_param/albedoTex = ExtResource( 2 )
+
+[sub_resource type="CubeMesh" id=3]
+material = SubResource( 2 )
+
+[node name="Box" type="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, -4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+mesh = SubResource( 3 )
+material/0 = null
